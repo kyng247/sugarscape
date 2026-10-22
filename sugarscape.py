@@ -1934,7 +1934,7 @@ if __name__ == "__main__":
                      "environmentUniversalSpiceIncomeInterval": 0,
                      "environmentUniversalSugarIncomeInterval": 0,
                      "environmentWidth": 50,
-                     "environmentWraparound": True,
+                     "environmentWraparound": "torus",
                      "experimentalGroup": None,
                      "headlessMode": False,
                      "interfaceHeight": 1000,
