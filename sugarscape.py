@@ -161,6 +161,9 @@ class Sugarscape:
                     distanceToStart = math.sqrt((startX - i)**2 + (startY - j)**2)
                 if self.environment.wraparound == "torus":
                     distanceToStart = math.sqrt(min(abs(startX - i), width - abs(startX - i))**2 + min(abs(startY - j), height - abs(startY - j))**2)
+                if self.environment.wraparound == "sphere":
+                    dx, dy = self.environment.findSphereDeltas(startX, startY, i, j)
+                    distanceToStart = math.sqrt(dx**2 + dy**2)
                 currDispersion = 1 + maxValue * (1 - distanceToStart / radius)
                 cellMaxCapacity = min(currDispersion, maxValue)
                 cellMaxCapacity = math.ceil(cellMaxCapacity)
