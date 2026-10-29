@@ -96,13 +96,15 @@ class Cell:
         return neighborWealth
 
     def findNorthNeighbor(self):
+        # Default north neighbor assuming wraparound
+        northNeighbor = self.environment.findCell(self.x, (self.y - 1 + self.environment.height) % self.environment.height)
+        # Check if cell is at the northern edge of the grid
         if self.y - 1 < 0:
             if self.environment.wraparound == "plane":
                 return None
             # Crossing the north pole stays in the same row half the grid away
             if self.environment.wraparound == "sphere":
                 return self.environment.findCell((self.x + self.environment.width // 2) % self.environment.width, self.y)
-        northNeighbor = self.environment.findCell(self.x, (self.y - 1 + self.environment.height) % self.environment.height)
         return northNeighbor
 
     def findPollutionFlux(self):
@@ -113,13 +115,15 @@ class Cell:
         self.pollutionFlux = meanPollution
 
     def findSouthNeighbor(self):
+        # Default south neighbor assuming wraparound
+        southNeighbor = self.environment.findCell(self.x, (self.y + 1 + self.environment.height) % self.environment.height)
+        # Check if cell is at the southern edge of the grid
         if self.y + 1 > self.environment.height - 1:
             if self.environment.wraparound == "plane":
                 return None
             # Crossing the south pole stays in the same row half the grid away
             if self.environment.wraparound == "sphere":
                 return self.environment.findCell((self.x + self.environment.width // 2) % self.environment.width, self.y)
-        southNeighbor = self.environment.findCell(self.x, (self.y + 1 + self.environment.height) % self.environment.height)
         return southNeighbor
 
     def findWestNeighbor(self):
