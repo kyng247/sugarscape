@@ -546,6 +546,7 @@ environmentWidth: int
 
 environmentWraparound: string
     Set whether the environment is a plane (no wraparound), a torus (wraparound), or an approximation of a sphere (east-west wraparound with globe-like wraparound on north and south edge).
+    Options: "plane", "torus", "sphere"
     Note: "Crossing a pole" in sphere mode leads to the same edge halfway across the width of the environment.
     Default: "torus"
 
