@@ -154,11 +154,14 @@ class Sugarscape:
     def addResourcePeak(self, startX, startY, radius, maxValue, resource):
         height = self.environment.height
         width = self.environment.width
-        radialDispersion = math.sqrt(max(startX, width - startX)**2 + max(startY, height - startY)**2) * (radius / width)
         for i in range(width):
             for j in range(height):
-                euclideanDistanceToStart = math.sqrt((startX - i)**2 + (startY - j)**2)
-                currDispersion = 1 + maxValue * (1 - euclideanDistanceToStart / radialDispersion)
+                distanceToStart = math.inf
+                if self.environment.wraparound == "plane":
+                    distanceToStart = math.sqrt((startX - i)**2 + (startY - j)**2)
+                if self.environment.wraparound == "torus":
+                    distanceToStart = math.sqrt(min(abs(startX - i), width - abs(startX - i))**2 + min(abs(startY - j), height - abs(startY - j))**2)
+                currDispersion = 1 + maxValue * (1 - distanceToStart / radius)
                 cellMaxCapacity = min(currDispersion, maxValue)
                 cellMaxCapacity = math.ceil(cellMaxCapacity)
                 if resource == "spice" and cellMaxCapacity > self.environment.findCell(i, j).maxSpice:
