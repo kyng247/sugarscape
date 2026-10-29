@@ -550,7 +550,6 @@ environmentWraparound: string
     Note: In plane mode, there is no wrapping.
     Note: In torus mode, all edges wrap to opposite side (i.e., north <-> south, east <-> west).
     Note: In sphere mode, north and south edges wrap back to same edge halfway across the grid. East/west edges act the same as torus.
-    
     Default: "torus"
 
 experimentalGroup: string
