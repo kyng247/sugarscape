@@ -1794,6 +1794,11 @@ def verifyConfiguration(configuration):
             print(f"Range of starting diseases per agent exceeds {startingDiseases} starting diseases. Setting range to {startingDiseasesPerAgent}.")
         configuration["startingDiseasesPerAgent"] = startingDiseasesPerAgent
 
+    # Ensure environment wraparound is valid type
+    if configuration["environmentWraparound"] not in ["plane", "torus", "sphere"]:
+        print(f"Invalid environment wraparound type: {configuration['environmentWraparound']}. Defaulting to 'torus'.")
+        configuration["environmentWraparound"] = "torus"
+
     if configuration["logfile"] == "":
         configuration["logfile"] = None
 
